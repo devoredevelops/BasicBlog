@@ -1,0 +1,40 @@
+@using AJIsite.Models
+@model IEnumerable<AJIsite.Models.Post>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Author</th>
+        <th>Date Created</th>
+        <th>Date Modified</th>
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>
+                @($"{p.Title}")
+            </td>
+            <td>
+                @($"{p.Body}")
+            </td>
+            <td>
+                @($"{p.Author.FullName}")
+            </td>
+            <td>
+                @($"{p.CreatedOn}")
+            </td>
+            <td>
+                @($"{p.ModifiedOn}")
+            </td>
+            
+        </tr>
+    }
+</table>
