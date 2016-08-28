@@ -15,7 +15,7 @@ namespace AJI.Models
         // [Required]
         // public string UserName { get; set; }
         // [Required]
-            public string FullName { get; set;}
+        // public string FullName { get; set;}
         // [Required]
         // [EmailAddressAttribute]
         // [Display(Name = "Email Address")]
