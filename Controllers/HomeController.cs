@@ -12,26 +12,27 @@ namespace AJI.Controllers
 {
     public class HomeController : Controller
     {
-        private AJI.Models.BloggingContext _context;
-        public HomeController(AJI.Models.BloggingContext context)
+        // private AJI.Models.BloggingContext _context;
+        private ApplicationDbContext _context;
+        public HomeController(ApplicationDbContext context)
         {
             _context = context;
         }
         public IActionResult Index()
         {
-            var result = _context.Posts
-                    .Include(post => post.Author)
-                    .OrderBy(post => post.ModifiedOn)
-                    .ToList();
+            // var result = _context.Posts
+            //         .Include(post => post.Author)
+            //         .OrderBy(post => post.ModifiedOn)
+            //         .ToList();
     
-            if (result.Any())
-            {
-                return View(result);
-            }
-            else
-            {
+            // if (result.Any())
+            // {
+            //     return View(result);
+            // }
+            // else
+            // {
                 return View();
-            }
+            // }
         }
 
         public IActionResult About()
