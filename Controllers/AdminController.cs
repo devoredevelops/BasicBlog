@@ -31,21 +31,20 @@ namespace AJI.Controllers
             _signInManager = signInManager;
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            // var result = _context.Posts
-            //         .Include(post => post.Author)
-            //         .OrderBy(post => post.ModifiedOn)
-            //         .ToList();
+            var result = _context.Posts
+                    .Include(post => post.Author)
+                    .OrderBy(post => post.ModifiedOn)
+                    .ToList();
     
             // if (result.Any())
             // {
             //     return View(result);
             // }
-            // else
-            // {
-                return View();
-            // }
+            
+            return View(result);
+            //return View();
         }
 
         public IActionResult Create()

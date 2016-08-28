@@ -11,7 +11,6 @@ namespace AJI.Models
         [RequiredAttribute]
         public string Title { get; set; }
         public string Body { get; set; }
-        //public int AuthorId { get; set; }
         public ApplicationUser Author { get; set;}
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Created On")]
