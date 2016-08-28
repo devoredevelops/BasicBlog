@@ -12,7 +12,6 @@ namespace AJI.Controllers
 {
     public class HomeController : Controller
     {
-        // private AJI.Models.BloggingContext _context;
         private ApplicationDbContext _context;
         public HomeController(ApplicationDbContext context)
         {
