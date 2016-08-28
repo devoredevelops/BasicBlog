@@ -19,19 +19,19 @@ namespace AJI.Controllers
         }
         public IActionResult Index()
         {
-            var result = _context.Posts
-                    .Include(post => post.Author)
-                    .OrderBy(post => post.ModifiedOn)
-                    .ToList();
+            // var result = _context.Posts
+            //         .Include(post => post.Author)
+            //         .OrderBy(post => post.ModifiedOn)
+            //         .ToList();
     
-            if (result.Any())
-            {
-                return View(result);
-            }
-            else
-            {
+            // if (result.Any())
+            // {
+            //     return View(result);
+            // }
+            // else
+            // {
                 return View();
-            }
+            // }
         }
 
         public IActionResult About()

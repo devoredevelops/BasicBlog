@@ -14,14 +14,14 @@ namespace AJI.Models
         // public int ID { get; set; }
         // [Required]
         // public string UserName { get; set; }
-        [Required]
-        public string FullName { get; set;}
+        // [Required]
+            public string FullName { get; set;}
         // [Required]
         // [EmailAddressAttribute]
         // [Display(Name = "Email Address")]
         // public string Email { get; set;}
-        [Required]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
+        // [Required]
+        // [DataType(DataType.Password)]
+        // public string Password { get; set; }
     }
 }
