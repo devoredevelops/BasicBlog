@@ -43,6 +43,9 @@ namespace AJI.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Post post) //[FromBodyAttribute]
         {
+            // post.Author = _context.Users.Where(u => u.)
+            post.ModifiedOn = DateTime.Now;
+            post.CreatedOn = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Posts.Add(post);
@@ -53,13 +56,13 @@ namespace AJI.Controllers
             return View(post);
         }
 
-        [HttpPostAttribute]
-        public IActionResult Delete(Post post)
+        public IActionResult Edit(Post post)
         {
             return View();
         }
 
-        public IActionResult Edit(Post post)
+        [HttpPostAttribute]
+        public IActionResult Delete(Post post)
         {
             return View();
         }
