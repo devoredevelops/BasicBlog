@@ -12,10 +12,12 @@ namespace AJI.Models
         public string Title { get; set; }
         public string Body { get; set; }
         public ApplicationUser Author { get; set;}
+
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Created On")]
         [DataType(DataType.Date)]
         public DateTime CreatedOn { get; set; }
+        
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Modified On")]
         [DataType(DataType.Date)]        
