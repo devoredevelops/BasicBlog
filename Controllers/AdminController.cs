@@ -104,7 +104,8 @@ namespace AJI.Controllers
                 try
                 {
                     // _context.Posts.Update(post).Context.Update
-                    _context.Update(post);
+                    // _context.Update(post);
+                    _context.Posts.Update(post);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
