@@ -1,11 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
 using AJI;
 using AJI.Data;
 using AJI.Models;
+using AJI.Models.AccountViewModels;
+using AJI.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace AJI.Controllers
@@ -17,42 +24,24 @@ namespace AJI.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            // var result = _context.Posts
-            //         .Include(post => post.Author)
-            //         .OrderBy(post => post.ModifiedOn)
-            //         .ToList();
+            var result = await _context.Posts
+                    .Include(p => p.Author)
+                    .OrderByDescending(p => p.ModifiedOn)
+                    .ToListAsync();
     
-            // if (result.Any())
-            // {
-            //     return View(result);
-            // }
-            // else
-            // {
+            if (!result.Any())
+            {
                 return View();
-            // }
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            }
+            
+            return View(result);
         }
 
         public IActionResult Error()
         {
             return View();
         }
-
-
     }
 }

@@ -5,22 +5,28 @@
     ViewData["Title"] = "Administration";
 }
 
-<h2>@ViewData["Title"].</h2>
+<h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
-<table class="table">
-    <tr>
-        <th>Title</th>
-        <th>Body</th>
-        <th>Author</th>
-        <th>Date Created</th>
-        <th>Date Modified</th>
-        <th></th>
-    </tr>
+@if (Model == null)
+{
+    <p>There are no posts yet!<br />
+    <a asp-action="Create">Create New Post</a></p>
+}
+else
+{
+    <p>
+        <a asp-action="Create">Create New Post</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Author</th>
+            <th>Date Created</th>
+            <th>Date Modified</th>
+            <th></th>
+        </tr>
     @foreach (var p in Model)
     {
         <tr>
@@ -45,4 +51,5 @@
             </td>
         </tr>
     }
-</table>
+    </table>
+}
