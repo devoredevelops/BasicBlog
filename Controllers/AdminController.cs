@@ -74,7 +74,8 @@ namespace AJI.Controllers
             {
                 return NotFound();
             }
-
+            
+            // find existing post
             Post post = _context.Posts
                         .Include(p => p.Author)
                         .SingleOrDefault(p => p.PostId == id);
@@ -89,34 +90,25 @@ namespace AJI.Controllers
 
         [HttpPostAttribute]
         [ValidateAntiForgeryTokenAttribute]
-        public async Task<IActionResult> Edit(int id, [BindAttribute("Title,Body")] Post post) //[FromBodyAttribute]
+        public async Task<IActionResult> Edit(int id, [BindAttribute("Title,Body")] Post post)
         {
-            Post oldPost = _context
-                            .Posts
-                            // .AsNoTracking()
+            // Look up existing post
+            Post oldPost = _context.Posts
                             .Include(p => p.Author)
-                            // .AsNoTracking()
                             .SingleOrDefault(p => p.PostId == id);
             
+            // Take data from Form and apply to existing post
             oldPost.Title = post.Title;
             oldPost.Body = post.Body;
             oldPost.ModifiedOn = DateTime.Now;
-            // post.PostId = id;
-            // post.Author = oldPost.Author;
-            // post.CreatedOn = oldPost.CreatedOn;
-            // post.ModifiedOn = DateTime.Now;
 
+            // Update post
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // _context.Posts.Update(post).Context.Update
-                    // _context.Update(post);
-                    _context.Update(oldPost);
-                    // _context.Posts.Update(post);
-                    // _context.Entry(post).State = EntityState.Modified;
-                    // await _context.SaveChangesAsync();
-                    _context.SaveChanges();
+                    _context.Posts.Update(oldPost);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -135,10 +127,31 @@ namespace AJI.Controllers
             return View(post);
         }
 
-        [HttpPostAttribute]
-        public IActionResult Delete(Post post)
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var post = await _context.Posts.SingleOrDefaultAsync(p => p.PostId == id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            return View(post);
+        }
+
+        // POST: Admin/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var post = await _context.Posts.SingleOrDefaultAsync(p => p.PostId == id);
+            _context.Posts.Remove(post);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync()
