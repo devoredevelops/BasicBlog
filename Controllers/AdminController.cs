@@ -38,13 +38,12 @@ namespace AJI.Controllers
                     .OrderBy(post => post.ModifiedOn)
                     .ToList();
     
-            // if (result.Any())
-            // {
-            //     return View(result);
-            // }
+            if (!result.Any())
+            {
+                return View();
+            }
             
             return View(result);
-            //return View();
         }
 
         public IActionResult Create()
@@ -53,13 +52,12 @@ namespace AJI.Controllers
         }
 
         [HttpPostAttribute]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryTokenAttribute]
         public async Task<IActionResult> Create(Post post) //[FromBodyAttribute]
         {
-            // post.Author = _context.Users.Where(u => u.)
             post.Author = await GetCurrentUserAsync();
-            post.ModifiedOn = DateTime.Now;
             post.CreatedOn = DateTime.Now;
+            post.ModifiedOn = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Posts.Add(post);
@@ -70,9 +68,27 @@ namespace AJI.Controllers
             return View(post);
         }
 
-        public IActionResult Edit(Post post)
+        public IActionResult Edit(int postId)
         {
-            return View();
+            Post post = _context.Posts.Where(p => p.PostId == postId).Single();
+
+            return View(post);
+        }
+
+        [HttpPostAttribute]
+        [ValidateAntiForgeryTokenAttribute]
+        public IActionResult Edit(Post post) //[FromBodyAttribute]
+        {
+            post.ModifiedOn = DateTime.Now;
+
+            if (ModelState.IsValid)
+            {
+                _context.Posts.Update(post);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(post);
         }
 
         [HttpPostAttribute]
