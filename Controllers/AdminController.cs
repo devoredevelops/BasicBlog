@@ -89,8 +89,13 @@ namespace AJI.Controllers
 
         [HttpPostAttribute]
         [ValidateAntiForgeryTokenAttribute]
-        public IActionResult Edit(Post post) //[FromBodyAttribute]
+        public async Task<IActionResult> Edit(Post post) //[FromBodyAttribute]
         {
+            Post oldPost = _context.Posts
+                            .Include(p => p.Author)
+                            .SingleOrDefault(p => p.PostId == post.PostId);
+            post.Author = await GetCurrentUserAsync();
+            post.CreatedOn = post.CreatedOn;
             post.ModifiedOn = DateTime.Now;
 
             if (ModelState.IsValid)
