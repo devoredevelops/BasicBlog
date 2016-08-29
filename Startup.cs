@@ -42,9 +42,6 @@ namespace AJI
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            // services.AddDbContext<BloggingContext>(options =>
-            //     options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()

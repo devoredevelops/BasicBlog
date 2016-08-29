@@ -8,6 +8,10 @@
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
 <table class="table">
     <tr>
         <th>Post ID</th>
@@ -16,6 +20,7 @@
         <th>Author</th>
         <th>Date Created</th>
         <th>Date Modified</th>
+        <th></th>
     </tr>
     @foreach (var p in Model)
     {
@@ -38,7 +43,10 @@
             <td>
                 @($"{p.ModifiedOn}")
             </td>
-            
+            <td>
+                <a asp-action="Edit" asp-route-id="@p.PostId">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@p.PostId">Delete</a>
+            </td>
         </tr>
     }
 </table>

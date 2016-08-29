@@ -34,8 +34,8 @@ namespace AJI.Controllers
         public async Task<IActionResult> Index()
         {
             var result = _context.Posts
-                    .Include(post => post.Author)
-                    .OrderBy(post => post.ModifiedOn)
+                    .Include(p => p.Author)
+                    .OrderBy(p => p.ModifiedOn)
                     .ToList();
     
             if (!result.Any())
@@ -68,11 +68,21 @@ namespace AJI.Controllers
             return View(post);
         }
 
-        public IActionResult Edit(int postId)
+        public IActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             Post post = _context.Posts
-                        .Where(p => p.PostId == postId)
-                        .Single();
+                        .Include(p => p.Author)
+                        .SingleOrDefault(p => p.PostId == id);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
 
             return View(post);
         }
