@@ -11,12 +11,12 @@
 @if (Model == null)
 {
     <p>There are no posts yet!<br />
-    <a asp-action="Create">Create New Post</a></p>
+    <a asp-action="Create">Create Post</a></p>
 }
 else
 {
     <p>
-        <a asp-action="Create">Create New Post</a>
+        <a asp-action="Create">Create Post</a>
     </p>
     <table class="table">
         <tr>
@@ -25,6 +25,7 @@ else
             <th>Author</th>
             <th>Date Created</th>
             <th>Date Modified</th>
+            <th></th>
             <th></th>
         </tr>
     @foreach (var p in Model)
@@ -46,7 +47,9 @@ else
                 @($"{p.ModifiedOn}")
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@p.PostId">Edit</a> |
+                <a asp-action="Edit" asp-route-id="@p.PostId">Edit</a>
+            </td>
+            <td>
                 <a asp-action="Delete" asp-route-id="@p.PostId">Delete</a>
             </td>
         </tr>

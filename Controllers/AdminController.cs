@@ -69,7 +69,7 @@ namespace AJI.Controllers
             return View(post);
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -80,6 +80,13 @@ namespace AJI.Controllers
             Post post = _context.Posts
                         .Include(p => p.Author)
                         .SingleOrDefault(p => p.PostId == id);
+
+            // If current user is not post's author, then return 401
+            ApplicationUser currentUser = await GetCurrentUserAsync();
+            if (currentUser != post.Author)
+            {
+                return Unauthorized();
+            }
 
             if (post == null)
             {
@@ -98,6 +105,12 @@ namespace AJI.Controllers
                             .Include(p => p.Author)
                             .SingleOrDefault(p => p.PostId == id);
             
+            // If current user is not post's author, then return 401
+            ApplicationUser currentUser = await GetCurrentUserAsync();
+            if (currentUser != oldPost.Author)
+            {
+                return Unauthorized();
+            }
             // Take data from Form and apply to existing post
             oldPost.Title = post.Title;
             oldPost.Body = post.Body;
@@ -140,6 +153,12 @@ namespace AJI.Controllers
             {
                 return NotFound();
             }
+            // If current user is not post's author, then return 401
+            ApplicationUser currentUser = await GetCurrentUserAsync();
+            if (currentUser != post.Author)
+            {
+                return Unauthorized();
+            }
 
             return View(post);
         }
@@ -150,6 +169,13 @@ namespace AJI.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var post = await _context.Posts.SingleOrDefaultAsync(p => p.PostId == id);
+
+            // If current user is not post's author, then return 401
+            ApplicationUser currentUser = await GetCurrentUserAsync();
+            if (currentUser != post.Author)
+            {
+                return Unauthorized();
+            }
             _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
