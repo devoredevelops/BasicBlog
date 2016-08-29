@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using AJI.Data;
 
-namespace AJI.Data.Migrations
+namespace AJI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160828220934_NoBloggingContext")]
-    partial class NoBloggingContext
+    [Migration("20160829001951_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,9 +30,6 @@ namespace AJI.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FullName")
-                        .IsRequired();
-
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -42,9 +39,6 @@ namespace AJI.Data.Migrations
 
                     b.Property<string>("NormalizedUserName")
                         .HasAnnotation("MaxLength", 256);
-
-                    b.Property<string>("Password")
-                        .IsRequired();
 
                     b.Property<string>("PasswordHash");
 

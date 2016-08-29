@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using AJI.Data;
 
-namespace AJI.Data.Migrations
+namespace AJI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -29,9 +29,6 @@ namespace AJI.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FullName")
-                        .IsRequired();
-
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -41,9 +38,6 @@ namespace AJI.Data.Migrations
 
                     b.Property<string>("NormalizedUserName")
                         .HasAnnotation("MaxLength", 256);
-
-                    b.Property<string>("Password")
-                        .IsRequired();
 
                     b.Property<string>("PasswordHash");
 
