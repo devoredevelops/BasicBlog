@@ -33,10 +33,10 @@ namespace AJI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var result = _context.Posts
+            var result = await _context.Posts
                     .Include(p => p.Author)
-                    .OrderBy(p => p.ModifiedOn)
-                    .ToList();
+                    .OrderByDescending(p => p.ModifiedOn)
+                    .ToListAsync();
     
             if (!result.Any())
             {
