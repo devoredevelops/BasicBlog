@@ -89,17 +89,22 @@ namespace AJI.Controllers
 
         [HttpPostAttribute]
         [ValidateAntiForgeryTokenAttribute]
-        public async Task<IActionResult> Edit(int id, [BindAttribute("PostId,Title,Body")] Post post) //[FromBodyAttribute]
+        public async Task<IActionResult> Edit(int id, [BindAttribute("Title,Body")] Post post) //[FromBodyAttribute]
         {
-            Post oldPost = _context.Posts
+            Post oldPost = _context
+                            .Posts
+                            // .AsNoTracking()
                             .Include(p => p.Author)
-                            .AsNoTracking()
+                            // .AsNoTracking()
                             .SingleOrDefault(p => p.PostId == id);
-
-            post.PostId = id;
-            post.Author = oldPost.Author;
-            post.CreatedOn = oldPost.CreatedOn;
-            post.ModifiedOn = DateTime.Now;
+            
+            oldPost.Title = post.Title;
+            oldPost.Body = post.Body;
+            oldPost.ModifiedOn = DateTime.Now;
+            // post.PostId = id;
+            // post.Author = oldPost.Author;
+            // post.CreatedOn = oldPost.CreatedOn;
+            // post.ModifiedOn = DateTime.Now;
 
             if (ModelState.IsValid)
             {
@@ -107,7 +112,9 @@ namespace AJI.Controllers
                 {
                     // _context.Posts.Update(post).Context.Update
                     // _context.Update(post);
-                    _context.Posts.Update(post);
+                    _context.Update(oldPost);
+                    // _context.Posts.Update(post);
+                    // _context.Entry(post).State = EntityState.Modified;
                     // await _context.SaveChangesAsync();
                     _context.SaveChanges();
                 }
@@ -122,10 +129,6 @@ namespace AJI.Controllers
                         throw;
                     }
                 }
-                // _context.Entry(post).State = EntityState.Modified;
-                // _context.Posts.Update(post);
-                // _context.Update(post);
-                // _context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
