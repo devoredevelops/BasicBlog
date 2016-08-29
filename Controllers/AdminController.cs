@@ -89,10 +89,11 @@ namespace AJI.Controllers
 
         [HttpPostAttribute]
         [ValidateAntiForgeryTokenAttribute]
-        public async Task<IActionResult> Edit(int id, [BindAttribute("Title,Body")] Post post) //[FromBodyAttribute]
+        public async Task<IActionResult> Edit(int id, [BindAttribute("PostId,Title,Body")] Post post) //[FromBodyAttribute]
         {
             Post oldPost = _context.Posts
                             .Include(p => p.Author)
+                            .AsNoTracking()
                             .SingleOrDefault(p => p.PostId == id);
 
             post.PostId = id;
