@@ -2,7 +2,7 @@
 @model IEnumerable<AJI.Models.Post>
 
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Administration";
 }
 
 <h2>@ViewData["Title"].</h2>
@@ -10,6 +10,7 @@
 
 <table class="table">
     <tr>
+        <th>Post ID</th>
         <th>Title</th>
         <th>Body</th>
         <th>Author</th>
@@ -19,6 +20,9 @@
     @foreach (var p in Model)
     {
         <tr>
+            <td>
+                @($"{p.PostId}")
+            </td>
             <td>
                 @($"{p.Title}")
             </td>

@@ -70,7 +70,9 @@ namespace AJI.Controllers
 
         public IActionResult Edit(int postId)
         {
-            Post post = _context.Posts.Where(p => p.PostId == postId).Single();
+            Post post = _context.Posts
+                        .Where(p => p.PostId == postId)
+                        .Single();
 
             return View(post);
         }
