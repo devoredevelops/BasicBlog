@@ -89,19 +89,39 @@ namespace AJI.Controllers
 
         [HttpPostAttribute]
         [ValidateAntiForgeryTokenAttribute]
-        public async Task<IActionResult> Edit(Post post) //[FromBodyAttribute]
+        public async Task<IActionResult> Edit(int id, [BindAttribute("PostId,Title,Body")] Post post) //[FromBodyAttribute]
         {
             Post oldPost = _context.Posts
                             .Include(p => p.Author)
-                            .SingleOrDefault(p => p.PostId == post.PostId);
-            post.Author = await GetCurrentUserAsync();
-            post.CreatedOn = post.CreatedOn;
+                            .SingleOrDefault(p => p.PostId == id);
+
+            post.Author = oldPost.Author;
+            post.CreatedOn = oldPost.CreatedOn;
             post.ModifiedOn = DateTime.Now;
 
             if (ModelState.IsValid)
             {
-                _context.Posts.Update(post);
-                _context.SaveChanges();
+                try
+                {
+                    // _context.Posts.Update(post).Context.Update
+                    _context.Update(post);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (oldPost == null)
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                // _context.Entry(post).State = EntityState.Modified;
+                // _context.Posts.Update(post);
+                // _context.Update(post);
+                // _context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
