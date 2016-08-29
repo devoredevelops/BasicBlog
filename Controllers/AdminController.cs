@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AJI.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

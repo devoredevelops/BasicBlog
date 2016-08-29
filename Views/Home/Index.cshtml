@@ -2,11 +2,15 @@
 @model IEnumerable<AJI.Models.Post>
 
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "";
 }
 
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
+
+<img src="/images/AJI.png" />
+
+<br />
 
 @if (Model == null)
 {
@@ -14,33 +18,14 @@
 }
 else
 {
-    <table class="table">
-        <tr>
-            <th>Title</th>
-            <th>Body</th>
-            <th>Author</th>
-            <th>Date Created</th>
-            <th>Date Modified</th>
-        </tr>
-        @foreach (var p in Model)
-        {
-            <tr>
-                <td>
-                    @($"{p.Title}")
-                </td>
-                <td>
-                    @($"{p.Body}")
-                </td>
-                <td>
-                    @($"{p.Author.UserName}")
-                </td>
-                <td>
-                    @($"{p.CreatedOn}")
-                </td>
-                <td>
-                    @($"{p.ModifiedOn}")
-                </td>
-            </tr>
-        }
-    </table>
+    @foreach (var p in Model)
+    {
+        <article>
+            <h4>@($"{p.Title}")</h4>
+            <h5>By <a href="mailto:@($"{p.Author.UserName}")">@($"{p.Author.UserName}")</a><h5>
+            <h6>Created on: @($"{p.CreatedOn}") - Modified on: @($"{p.ModifiedOn}")</h6>
+            <p>@($"{p.Body}")</p>
+        </article>
+        <br />
+    }
 }
