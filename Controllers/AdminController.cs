@@ -95,6 +95,7 @@ namespace AJI.Controllers
                             .Include(p => p.Author)
                             .SingleOrDefault(p => p.PostId == id);
 
+            post.PostId = id;
             post.Author = oldPost.Author;
             post.CreatedOn = oldPost.CreatedOn;
             post.ModifiedOn = DateTime.Now;
