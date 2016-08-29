@@ -89,7 +89,7 @@ namespace AJI.Controllers
 
         [HttpPostAttribute]
         [ValidateAntiForgeryTokenAttribute]
-        public async Task<IActionResult> Edit(int id, [BindAttribute("PostId,Title,Body")] Post post) //[FromBodyAttribute]
+        public async Task<IActionResult> Edit(int id, [BindAttribute("Title,Body")] Post post) //[FromBodyAttribute]
         {
             Post oldPost = _context.Posts
                             .Include(p => p.Author)
@@ -106,7 +106,8 @@ namespace AJI.Controllers
                     // _context.Posts.Update(post).Context.Update
                     // _context.Update(post);
                     _context.Posts.Update(post);
-                    await _context.SaveChangesAsync();
+                    // await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
