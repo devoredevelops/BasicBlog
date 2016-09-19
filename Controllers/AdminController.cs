@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using AJI.Data;
-using AJI.Models;
+using BasicBlog.Data;
+using BasicBlog.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AJI.Controllers
+namespace BasicBlog.Controllers
 {
     [Authorize]
     public class AdminController : Controller

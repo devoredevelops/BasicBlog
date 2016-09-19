@@ -2,7 +2,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace AJI.Models
+namespace BasicBlog.Models
 {
     public class Post
     {

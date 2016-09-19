@@ -1,10 +1,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using AJI.Data;
+using BasicBlog.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace AJI.Controllers
+namespace BasicBlog.Controllers
 {
     public class HomeController : Controller
     {

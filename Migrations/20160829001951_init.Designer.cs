@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using AJI.Data;
+using BasicBlog.Data;
 
-namespace AJI.Migrations
+namespace BasicBlog.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20160829001951_init")]
@@ -16,7 +16,7 @@ namespace AJI.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
 
-            modelBuilder.Entity("AJI.Models.ApplicationUser", b =>
+            modelBuilder.Entity("BasicBlog.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
 
@@ -65,7 +65,7 @@ namespace AJI.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("AJI.Models.Post", b =>
+            modelBuilder.Entity("BasicBlog.Models.Post", b =>
                 {
                     b.Property<int>("PostId")
                         .ValueGeneratedOnAdd();
@@ -195,9 +195,9 @@ namespace AJI.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("AJI.Models.Post", b =>
+            modelBuilder.Entity("BasicBlog.Models.Post", b =>
                 {
-                    b.HasOne("AJI.Models.ApplicationUser", "Author")
+                    b.HasOne("BasicBlog.Models.ApplicationUser", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
                 });
@@ -212,7 +212,7 @@ namespace AJI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("AJI.Models.ApplicationUser")
+                    b.HasOne("BasicBlog.Models.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -220,7 +220,7 @@ namespace AJI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("AJI.Models.ApplicationUser")
+                    b.HasOne("BasicBlog.Models.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -233,7 +233,7 @@ namespace AJI.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("AJI.Models.ApplicationUser")
+                    b.HasOne("BasicBlog.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

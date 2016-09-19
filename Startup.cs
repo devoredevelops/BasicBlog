@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AJI.Data;
-using AJI.Models;
-using AJI.Services;
+using BasicBlog.Data;
+using BasicBlog.Models;
+using BasicBlog.Services;
 
-namespace AJI
+namespace BasicBlog
 {
     public class Startup
     {

@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using AJI.Models;
-using AJI.Models.ManageViewModels;
-using AJI.Services;
+using BasicBlog.Models;
+using BasicBlog.Models.ManageViewModels;
+using BasicBlog.Services;
 
-namespace AJI.Controllers
+namespace BasicBlog.Controllers
 {
     [Authorize]
     public class ManageController : Controller

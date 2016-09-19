@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using AJI.Models;
+using BasicBlog.Models;
 
-namespace AJI.Data
+namespace BasicBlog.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

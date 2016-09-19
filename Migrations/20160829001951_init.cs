@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AJI.Migrations
+namespace BasicBlog.Migrations
 {
     public partial class init : Migration
     {

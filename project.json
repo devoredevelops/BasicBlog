@@ -1,5 +1,5 @@
 {
-  "userSecretsId": "aspnet-AJI-8c275748-3e03-46b0-b9f0-3523ddb5c9c7",
+  "userSecretsId": "aspnet-BasicBlog-8c275748-3e03-46b0-b9f0-3523ddb5c9c7",
 
   "dependencies": {
     "Microsoft.NETCore.App": {
@@ -97,6 +97,6 @@
   },
 
   "tooling": {
-    "defaultNamespace": "AJI"
+    "defaultNamespace": "BasicBlog"
   }
 }

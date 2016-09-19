@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using AJI.Models;
-using AJI.Models.AccountViewModels;
-using AJI.Services;
+using BasicBlog.Models;
+using BasicBlog.Models.AccountViewModels;
+using BasicBlog.Services;
 
-namespace AJI.Controllers
+namespace BasicBlog.Controllers
 {
     [Authorize]
     public class AccountController : Controller

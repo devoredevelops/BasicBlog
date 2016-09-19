@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AJI.Models.ManageViewModels
+namespace BasicBlog.Models.ManageViewModels
 {
     public class ConfigureTwoFactorViewModel
     {
