@@ -18,8 +18,7 @@ else
     {
         <article>
             <h4>@($"{p.Title}")</h4>
-            <h5>By <a href="mailto:@($"{p.Author.UserName}")">@($"{p.Author.UserName}")</a><h5>
-            <h6>Created on: @($"{p.CreatedOn}") - Modified on: @($"{p.ModifiedOn}")</h6>
+            <h5>By <a href="mailto:@($"{p.Author.UserName}")">@($"{p.Author.UserName}")</a> - Created on: @($"{p.CreatedOn}") - Modified on: @($"{p.ModifiedOn}")<h5>
             <p>@($"{p.Body}")</p>
         </article>
         <br />
