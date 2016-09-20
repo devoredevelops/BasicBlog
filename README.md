@@ -4,7 +4,7 @@ This is a very basic blog written in ASP.NET Core MVC.
 
 ## Instructions to run
 
-1. Install .NET Core: https://www.microsoft.com/net/core#windows.
+1. Install .NET Core: https://www.microsoft.com/net/core.
 2. Download the repo and unzip into folder "BasicBlog".
 3. Open Command Prompt/PowerShell from the directory you unzipped the project to.
 4. Run command "dotnet restore".
