@@ -1,0 +1,58 @@
+@using BasicBlog.Models
+@model IEnumerable<BasicBlog.Models.Post>
+
+@{
+    ViewData["Title"] = "Administration";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+@if (Model == null)
+{
+    <p>There are no posts yet!<br />
+    <a asp-action="Create">Create Post</a></p>
+}
+else
+{
+    <p>
+        <a asp-action="Create">Create Post</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Author</th>
+            <th>Date Created</th>
+            <th>Date Modified</th>
+            <th></th>
+            <th></th>
+        </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>
+                @($"{p.Title}")
+            </td>
+            <td>
+                @($"{p.Body}")
+            </td>
+            <td>
+                @($"{p.Author.UserName}")
+            </td>
+            <td>
+                @($"{p.CreatedOn}")
+            </td>
+            <td>
+                @($"{p.ModifiedOn}")
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@p.PostId">Edit</a>
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@p.PostId">Delete</a>
+            </td>
+        </tr>
+    }
+    </table>
+}

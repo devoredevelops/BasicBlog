@@ -1,0 +1,36 @@
+@using BasicBlog.Models
+@model BasicBlog.Models.Post
+
+@{
+    ViewData["Title"] = "Delete Post?";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-controller="Admin" asp-action="Delete" method="post" class="form-horizontal" role="form">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input disabled="true" asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Body" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea disabled="true" asp-for="Body" class="form-control"></textarea>
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Delete" class="btn btn-default" />&nbsp;&nbsp;&nbsp;&nbsp;<a asp-action="Index">Go Back</a>
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                
+            </div>
+        </div>
+    </div>
+</form>
