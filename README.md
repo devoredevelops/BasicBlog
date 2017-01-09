@@ -1,6 +1,6 @@
 # Basic Blog
 
-This is a very basic blog written in ASP.NET Core MVC. 
+This is a blog engine written in ASP.NET Core MVC. 
 
 ## Instructions to run
 
